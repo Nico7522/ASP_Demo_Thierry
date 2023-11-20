@@ -2,7 +2,9 @@
 using GestMovie.Mvc.Models.Business.Repositories;
 using GestMovie.Mvc.Models.Business.Services;
 using GestMovie.Mvc.Models.Forms;
+using GestMovie.Mvc.Models.Mappers;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.CodeAnalysis.CSharp.Syntax;
 using Microsoft.Extensions.Logging;
 
 namespace GestMovie.Mvc.Controllers
@@ -19,7 +21,30 @@ namespace GestMovie.Mvc.Controllers
 
         public IActionResult Index()
         {
-            return View(_repository.Get().Select(m => new DisplayLightMovie() { Nom = m.Nom, Annee = m.Annee }));
+            return View(_repository.Get().Select(m => new DisplayLightMovie() { Id = m.Id, Nom = m.Nom, Annee = m.Annee }));
+        }
+
+        public IActionResult Details(int id)
+        {
+            MovieDetailsForm movie = _repository.GetOne(id).MapperToMovieDetails();
+            return View(movie);
+        }
+
+        public IActionResult Delete(int id)
+        {
+            Console.WriteLine("idc", id);
+            if (_repository.Delete(id) > 0)
+            {
+                ViewBag.Message = "Supprimé avec succès";
+                return View();
+
+            }
+            else
+            {
+                ViewBag.Message = "Une erreur s'est produite";
+
+                return View();
+            }
         }
 
         //Retourner le formulaire

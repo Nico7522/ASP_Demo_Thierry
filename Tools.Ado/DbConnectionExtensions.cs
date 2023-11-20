@@ -25,6 +25,8 @@ namespace Tools.Ado
             }
         }
 
+
+        // Récupère toutes les données
         public static IEnumerable<T> ExecuteReader<T>(this DbConnection connection, string query, Func<DbDataReader, T> mapper, object? parameters)
         {
             EnsureValidConnection(connection);
@@ -39,6 +41,7 @@ namespace Tools.Ado
             }
             return result;
         }
+
 
         private static DbCommand CreateCommand(DbConnection connection, string query, object? parameters)
         {

@@ -16,9 +16,19 @@ namespace GestMovie.Mvc.Models.Business.Services
             _repository = repository;
         }
 
+        public int Delete(int idMovie)
+        {
+            return _repository.Delete(idMovie);
+        }
+
         public IEnumerable<Movie> Get()
         {
             return _repository.Get().Select(m => m.ToBll());
+        }
+
+        public Movie GetOne(int idMovie)
+        {
+            return _repository.GetOne(idMovie).Select(m => m.ToBll()).First();
         }
 
         public Movie Insert(Movie movie)

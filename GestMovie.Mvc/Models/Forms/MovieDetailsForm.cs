@@ -1,10 +1,10 @@
 ﻿namespace GestMovie.Mvc.Models.Forms
 {
-#nullable disable
-    public class DisplayLightMovie
+    public class MovieDetailsForm
     {
         public int Id { get; set; }
         public string Nom { get; set; }
         public int Annee { get; set; }
+        public string Realisateur { get; set; }
     }
 }
