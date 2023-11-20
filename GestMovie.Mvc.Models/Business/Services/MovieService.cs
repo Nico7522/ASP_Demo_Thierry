@@ -4,6 +4,7 @@ using DalService = GestMovie.Mvc.Models.Data.Services.MovieService;
 using GestMovie.Mvc.Models.Business.Entities;
 using GestMovie.Mvc.Models.Business.Repositories;
 using GestMovie.Mvc.Models.Business.Mappers;
+using MovieFromDal = GestMovie.Mvc.Models.Data.Entities;
 
 namespace GestMovie.Mvc.Models.Business.Services
 {
@@ -34,6 +35,11 @@ namespace GestMovie.Mvc.Models.Business.Services
         public Movie Insert(Movie movie)
         {
             return _repository.Insert(movie.ToDal()).ToBll();
+        }
+
+        public bool Update(MovieFromDal.Movie movie)
+        {
+            return _repository.Update(movie);
         }
     }
 }

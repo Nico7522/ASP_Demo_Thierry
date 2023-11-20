@@ -9,5 +9,7 @@ namespace GestMovie.Mvc.Models.Data.Repositories
         Movie Insert(Movie movie);
 
         int Delete(int idMovie);
+
+        bool Update(Movie movie);
     }
 }

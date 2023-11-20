@@ -68,5 +68,24 @@ namespace GestMovie.Mvc.Controllers
 
             return RedirectToAction("Index");
         }
+
+        public IActionResult Edit(int id) {
+
+            UpdateMovieForm form = _repository.GetOne(id).MapperToUpdateMovieForm();
+            return View(form);
+        }
+
+        [HttpPost]
+        public IActionResult Edit(UpdateMovieForm form)
+        {
+            if (_repository.Update(form.MapperToMovie()))
+            {
+                ViewBag.Message = "Les changement on été appliqué";
+                return View(form);
+            }
+            ViewBag.Message = "Erreur";
+
+            return View(form);
+        }
     }
 }

@@ -43,5 +43,13 @@ namespace GestMovie.Mvc.Models.Data.Services
             isDeleted = (int)_connection.ExecuteNonQuery("DELETE FROM MOVIE WHERE Id = @id", new { id = idMovie })!;
             return isDeleted;
         }
+
+        public bool Update(Movie movie)
+        {
+            _connection.Open();
+
+            _connection.ExecuteNonQuery("UPDATE Movie SET Nom = @nom, Annee = @annee, realisateur = @realisateur WHERE Id = @id", new { movie.Nom, movie.Annee, movie.Realisateur, movie.Id });
+            return true;
+        }
     }
 }
