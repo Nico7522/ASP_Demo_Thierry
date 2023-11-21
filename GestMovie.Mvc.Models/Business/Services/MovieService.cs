@@ -37,9 +37,11 @@ namespace GestMovie.Mvc.Models.Business.Services
             return _repository.Insert(movie.ToDal()).ToBll();
         }
 
-        public bool Update(MovieFromDal.Movie movie)
+        public bool Update(Movie movie, int id)
         {
-            return _repository.Update(movie);
+
+            Movie movieToUpdate = new(id, movie.Nom, movie.Annee, movie.Realisateur);
+            return _repository.Update(movieToUpdate.ToDal());
         }
     }
 }

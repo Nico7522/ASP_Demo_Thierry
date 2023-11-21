@@ -78,14 +78,15 @@ namespace GestMovie.Mvc.Controllers
         [HttpPost]
         public IActionResult Edit(UpdateMovieForm form)
         {
-            if (_repository.Update(form.MapperToMovie()))
+         
+            if (ModelState.IsValid && _repository.Update(form.MapperToMovie(), form.Id))
             {
                 ViewBag.Message = "Les changement on été appliqué";
-                return View(form);
+                return View();
             }
             ViewBag.Message = "Erreur";
+            return View();
 
-            return View(form);
         }
     }
 }

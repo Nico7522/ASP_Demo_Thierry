@@ -1,6 +1,6 @@
-﻿using GestMovie.Mvc.Models.Business.Entities;
-using MovieFromDAL = GestMovie.Mvc.Models.Data.Entities;
+﻿using MovieFromDAL = GestMovie.Mvc.Models.Data.Entities;
 using GestMovie.Mvc.Models.Forms;
+using GestMovie.Mvc.Models.Business.Entities;
 
 namespace GestMovie.Mvc.Models.Mappers
 {
@@ -19,20 +19,16 @@ namespace GestMovie.Mvc.Models.Mappers
             };
         }
 
-        internal static MovieFromDAL.Movie MapperToMovie(this UpdateMovieForm m)
+        internal static Movie MapperToMovie(this UpdateMovieForm m)
         {
-            return new MovieFromDAL.Movie
-            {
-                Id = m.Id,
-                Nom = m.Nom,
-                Annee = m.Annee,
-                Realisateur = m.Realisateur
-            };
+            return new Movie(m.Nom, m.Annee, m.Realisateur);
+           
         }
         internal static UpdateMovieForm MapperToUpdateMovieForm(this Movie m) {
 
             return new UpdateMovieForm
             {
+                Id = m.Id,
                 Nom = m.Nom,
                 Annee = m.Annee,
                 Realisateur = m.Realisateur
